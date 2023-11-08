@@ -1,25 +1,44 @@
-import React, { useReducer } from "react";
+import React, { useState } from "react";
 
-export const reducer = (state, action) => {
-  switch (action.type) {
-    case "newEmail":
-      return { ...state, email: action.payload };
-    case "newPassword":
-      return { ...state, password: action.payload };
-    default:
-      return { ...state };
-  }
-};
+// export const reducer = (state, action) => {
+//   switch (action.type) {
+//     case "newEmail":
+//       return { ...state, email: action.payload };
+//     case "newPassword":
+//       return { ...state, password: action.payload };
+//     default:
+//       return { ...state };
+//   }
+// };
 
 const SignInForm = () => {
-  const [state, dispatch] = useReducer(reducer, { email: "", password: "" });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const loginObject = { email: email, password: password };
+  const loginString = JSON.stringify(loginObject);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    fetch("http://localhost:3001/api/v1/user/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: loginString,
+    }).then(function (response) {
+      response.json().then((token) => {
+        if (response.ok) {
+          console.log(token.body.token);
+        } else {
+          console.log("bad");
+        }
+      });
+    });
+  };
 
   return (
     <div className="main bg-dark">
       <div className="sign-in-content">
         <i className="fa fa-user-circle sign-in-icon"></i>
         <h1>Sign In</h1>
-        <form className=".login-form">
+        <form className=".login-form" onSubmit={onSubmit}>
           <div className="input-wrapper">
             {/* <label htmlFor="username">Username</label>
             <input type="text" id="username" name="username" /> */}
@@ -28,10 +47,8 @@ const SignInForm = () => {
               type="email"
               id="email"
               name="email"
-              value={state.email}
-              onChange={(e) =>
-                dispatch({ type: "newEmail", payload: e.target.value })
-              }
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="input-wrapper">
@@ -40,10 +57,8 @@ const SignInForm = () => {
               type="password"
               id="password"
               name="password"
-              value={state.password}
-              onChange={(e) =>
-                dispatch({ type: "newPassword", payload: e.target.value })
-              }
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <div className="input-remember">

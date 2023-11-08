@@ -1,6 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { reducer } from "../components/SignInForm";
+import tokenReducer from "../slice";
 
 export const store = configureStore({
-  reducer: { reducer },
+  reducer: {
+    token: tokenReducer,
+  },
 });

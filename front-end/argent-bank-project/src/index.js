@@ -1,22 +1,25 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./styles/main.css";
-import App from "./App";
-// import { store } from "./app/store";
-// import { Provider } from "react-redux";
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import "./styles/main.css";
+// import App from "./App";
 
-// ReactDOM.render(
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+// root.render(
 //   <React.StrictMode>
-//     <Provider store={store}>
-//       <App />
-//     </Provider>
-//   </React.StrictMode>,
-//   document.getElementById("root")
+//     <App />
+//   </React.StrictMode>
 // );
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
+import React from "react";
+import ReactDOM from "react-dom";
+import "./styles/main.css";
+import App from "./App";
+import { store } from "./app/store";
+import { Provider } from "react-redux";
+
+ReactDOM.render(
+  <Provider store={store}>
     <App />
-  </React.StrictMode>
+  </Provider>,
+  document.getElementById("root")
 );
