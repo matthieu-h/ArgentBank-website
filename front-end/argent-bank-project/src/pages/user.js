@@ -9,7 +9,7 @@ const User = () => {
 
   return (
     <div>
-      <Header connexion="Sign out" onClick = {}/>
+      <Header connexion="Sign out" />>
       <div className="main bg-dark">
         <div className="header">
           <h1>
