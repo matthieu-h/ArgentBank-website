@@ -180,6 +180,13 @@ body {
   padding: 32px;
 }
 
+.message{
+  display: flex;
+  justify-content: center;
+  margin-top: 0;
+  color: red;
+}
+
 .sign-in-content h1{
   font-size: 24px;
 }

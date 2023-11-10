@@ -1,10 +1,12 @@
 import React from "react";
 import Banner from "../components/Banner";
 import FeaturesItem from "../components/FeaturesItem";
+import Header from "../components/Header";
 
 const Home = () => {
   return (
     <div>
+      <Header connexion="Sign in" />
       <Banner />
       <div className="features">
         <h2 className="sr-only">Features</h2>

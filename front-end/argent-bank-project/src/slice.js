@@ -1,30 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  value: null,
+  token: "",
 };
 
-export const slice = createSlice({
-  name: "token",
+export const SignInFormSlice = createSlice({
+  name: "SignInForm",
   initialState,
   reducers: {
     setToken: (state, action) => {
-      state.token = action.payload;
+      state.token += action.payload;
+      console.log(state.token);
     },
-    // reducer: (state, action) => {
-    //   switch (action.type) {
-    //     case "newEmail":
-    //       return { ...state, email: action.payload };
-    //     case "newPassword":
-    //       return { ...state, password: action.payload };
-    //     default:
-    //       return { ...state };
-    //   }
-    // },
   },
 });
 
-// Action creators are generated for each case reducer function
-export const { setToken } = slice.actions;
-
-export default slice.reducer;
+export const { setToken } = SignInFormSlice.actions;
+export default SignInFormSlice.reducer;

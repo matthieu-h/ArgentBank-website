@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { home, signIn } from "../routes";
 
-const Header = () => {
+const Header = ({ connexion }) => {
   return (
     <div>
       <nav className="main-nav">
@@ -17,7 +17,7 @@ const Header = () => {
         <div>
           <NavLink to={signIn} className="main-nav-item">
             <i className="fa fa-user-circle"></i>
-            Sign In
+            {connexion}
           </NavLink>
         </div>
       </nav>
