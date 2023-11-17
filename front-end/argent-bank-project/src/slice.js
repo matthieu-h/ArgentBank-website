@@ -9,11 +9,13 @@ export const SignInFormSlice = createSlice({
   initialState,
   reducers: {
     setToken: (state, action) => {
-      state.token += action.payload;
-      console.log(state.token);
+      state.token = action.payload;
+    },
+    unSetToken: (state) => {
+      state.token = null;
     },
   },
 });
 
-export const { setToken } = SignInFormSlice.actions;
+export const { setToken, unSetToken } = SignInFormSlice.actions;
 export default SignInFormSlice.reducer;

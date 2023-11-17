@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setToken } from "../slice";
+import { useNavigate } from "react-router-dom";
+import { user } from "../routes";
 
 export function SignInForm() {
   const [email, setEmail] = useState("");
@@ -8,8 +10,12 @@ export function SignInForm() {
   const [message, setMessage] = useState("hidden");
   const loginObject = { email: email, password: password };
   const loginString = JSON.stringify(loginObject);
-  // const tokenRed = useSelector((state) => state.tokener.token);
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const redirection = () => {
+    navigate(user);
+  };
   const onSubmit = (e) => {
     e.preventDefault();
     fetch("http://localhost:3001/api/v1/user/login", {
@@ -20,9 +26,8 @@ export function SignInForm() {
       response.json().then((tokenObject) => {
         if (response.ok) {
           const token = tokenObject.body.token;
-          console.log(token);
           dispatch(setToken(token));
-          document.location.assign("/user");
+          redirection();
         } else {
           setMessage();
         }
@@ -40,8 +45,6 @@ export function SignInForm() {
             <p className="message" style={{ visibility: message }}>
               Incorrect email or password
             </p>
-            {/* <label htmlFor="username">Username</label>
-            <input type="text" id="username" name="username" /> */}
             <label htmlFor="email">Mail</label>
             <input
               type="email"

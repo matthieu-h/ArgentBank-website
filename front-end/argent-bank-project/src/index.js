@@ -9,9 +9,9 @@ import { StrictMode } from "react";
 const container = document.getElementById("root");
 const root = createRoot(container);
 root.render(
-  <Provider store={store}>
-    <StrictMode>
+  <StrictMode>
+    <Provider store={store}>
       <App />
-    </StrictMode>
-  </Provider>
+    </Provider>
+  </StrictMode>
 );
