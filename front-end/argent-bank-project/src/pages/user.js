@@ -3,17 +3,23 @@ import Account from "../components/Account";
 import Header from "../components/Header";
 import { useDispatch } from "react-redux";
 import { unSetToken } from "../slice";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { signIn } from "../../src/routes";
 import UserName from "../components/UserName";
-
-// import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 
 const User = () => {
-  // let { userId } = useParams();
-  // const userObject = data.find((e) => e.id === userId);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const firstName = useSelector((state) => state.firstName.firstName);
+  const lastName = useSelector((state) => state.lastName.lastName);
+
+  const id = useSelector((state) => state.id.id);
+  console.log(id);
+
+  let { userId } = useParams();
+  console.log(userId);
 
   const logout = (e) => {
     dispatch(unSetToken());
@@ -24,7 +30,7 @@ const User = () => {
     <div>
       <Header connexion="Sign out" onclick={logout} />
       <div className="main bg-dark">
-        <UserName />
+        <UserName firstName={firstName} lastName={lastName} />
         <h2 className="sr-only">Accounts</h2>
         <Account
           title="Argent Bank Checking (x8349)"

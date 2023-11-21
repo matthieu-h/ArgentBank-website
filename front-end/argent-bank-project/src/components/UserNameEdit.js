@@ -18,7 +18,7 @@ const UserNameEdit = () => {
     console.log(userNameState);
   };
 
-  const userNameObject = { username: userNameState };
+  const userNameObject = { userName: userNameState };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -29,12 +29,11 @@ const UserNameEdit = () => {
         Authorization: `Bearer ${tokenRed}`,
         "Content-Type": "application/json",
       },
-      body: userNameObject,
+      body: JSON.stringify(userNameObject),
     }).then(function (response) {
       response.json().then((userObject) => {
         if (response.ok) {
           console.log(userObject);
-          // redirection();
         } else {
           console.log("pas ok");
         }

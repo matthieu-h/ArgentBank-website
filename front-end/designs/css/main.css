@@ -260,8 +260,12 @@ body {
 }
 
 .header {
-  color: #fff;
+  color: yellow;
   margin-bottom: 2rem;
+  width: 400px;
+}
+
+.edit-user{
 }
 
 .transaction-button {

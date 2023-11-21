@@ -3,6 +3,7 @@ import tokenerReducer from "../slice";
 import firstNameReducer from "../profileSlice";
 import lastNameReducer from "../profileSlice";
 import userNameReducer from "../profileSlice";
+import userIdReducer from "../profileSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
     firstName: firstNameReducer,
     lastName: lastNameReducer,
     userName: userNameReducer,
+    id: userIdReducer,
   },
 });
